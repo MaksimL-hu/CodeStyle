@@ -21,7 +21,6 @@ public class Shooter : MonoBehaviour
         {
             Vector3 direction = (_target.position - transform.position).normalized;
             Bullet bullet = Instantiate(_bullet, transform.position + direction, Quaternion.identity);
-
             bullet.SetVelocity(direction);
 
             yield return delay;
