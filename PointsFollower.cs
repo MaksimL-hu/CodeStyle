@@ -29,7 +29,7 @@ public class PointsFollower : MonoBehaviour
 
     private void NextPoint()
     {
-        _index = (_index + 1) % _points.Length;
+        _index = (++_index) % _points.Length;
         _currentPoint = _points[_index];
     }
 }
