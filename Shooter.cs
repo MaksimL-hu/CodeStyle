@@ -15,12 +15,13 @@ public class Shooter : MonoBehaviour
     private IEnumerator Shooting()
     {
         WaitForSeconds delay = new WaitForSeconds(_delayShoot);
-        bool isShooting = true;
+        bool isShoot = true;
 
-        while (isShooting)
+        while (isShoot)
         {
             Vector3 direction = (_target.position - transform.position).normalized;
             Bullet bullet = Instantiate(_bullet, transform.position + direction, Quaternion.identity);
+            bullet.SetDirectionGreenAxis(direction);
             bullet.SetVelocity(direction);
 
             yield return delay;

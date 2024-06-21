@@ -3,7 +3,7 @@ using UnityEngine;
 public class PointsFollower : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    [SerializeField] private Transform _headPoint;
+    [SerializeField] private Transform _containerPoints;
 
     private Transform[] _points;
     private Transform _currentPoint;
@@ -11,10 +11,10 @@ public class PointsFollower : MonoBehaviour
 
     private void Start()
     {
-        _points = new Transform[_headPoint.childCount];
+        _points = new Transform[_containerPoints.childCount];
 
         for (int i = 0; i < _points.Length; i++)
-            _points[i] = _headPoint.GetChild(i).GetComponent<Transform>();
+            _points[i] = _containerPoints.GetChild(i);
 
         _currentPoint = _points[_index];
     }
@@ -24,10 +24,10 @@ public class PointsFollower : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, _currentPoint.position, _speed * Time.deltaTime);
 
         if (transform.position == _currentPoint.position)
-            NextPoint();
+            GetNextPoint();
     }
 
-    private void NextPoint()
+    private void GetNextPoint()
     {
         _index = (++_index) % _points.Length;
         _currentPoint = _points[_index];

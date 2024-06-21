@@ -15,4 +15,9 @@ public class Bullet : MonoBehaviour
     {
         _rigidbody.velocity = direction * _speed;
     }
+
+    public void SetDirectionGreenAxis(Vector3 direction)
+    {
+        transform.up = direction;
+    }
 }
